@@ -42,4 +42,4 @@ This site lets you add photos and share them with the world, and with a profile 
 ![alt text](./images/demo/desktop.jpg)  
 ![alt text](./images/demo/tablet.jpg) ![alt text](./images/demo/cell.jpg)
 
-[Project GitHub Page]()
+[Project GitHub Page](https://jbr4ndt.github.io/se_project_aroundtheus/)

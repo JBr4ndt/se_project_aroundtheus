@@ -19,13 +19,13 @@ This site lets you add photos and share them with the world, and with a profile 
 ```css
 @media screen and (max-width: 770px) {
   .profile__info {
-    grid-template-columns: minmax(auto, 300px) auto;
+    grid-template-columns: minmax(auto, 290px) auto;
     grid-gap: 6px 6px;
   }
   ...
 @media screen and (max-width: 580px) {
   .profile__info {
-    grid-template-columns: minmax(auto, 240px) auto;
+    grid-template-columns: minmax(auto, 235px) auto;
     grid-gap: 5px 5px;
   }
   ...

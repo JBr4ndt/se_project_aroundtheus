@@ -1,6 +1,7 @@
 .footer {
   font-family: "Inter", Arial, sans-serif;
   margin: 50px auto;
+  flex-shrink: 0;
 }
 
 .footer__copyright {

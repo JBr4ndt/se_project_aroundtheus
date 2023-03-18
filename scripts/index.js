@@ -66,12 +66,21 @@ function openModal(modal) {
   modal.classList.add("modal_opened");
 }
 
+function openEditModal() {
+  fillProfileForm();
+  openModal(profileEditModal);
+}
+
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
 }
 
 function addCard(data) {
   galleryCards.prepend(getCardElement(data));
+}
+
+function resetForm(form) {
+  document.getElementById(form).reset();
 }
 
 function getCardElement(data) {
@@ -117,6 +126,7 @@ function handleAddCardFormSubmit(evt) {
 
   addCard(newData);
   closeModal(addCardModal);
+  resetForm("add-card-form");
 }
 
 initialCards.forEach((data) => {
@@ -125,10 +135,7 @@ initialCards.forEach((data) => {
 });
 
 profileForm.addEventListener("submit", handleProfileFormSubmit);
-profileEditButton.addEventListener("click", () => {
-  fillProfileForm();
-  openModal(profileEditModal);
-});
+profileEditButton.addEventListener("click", openEditModal);
 profileEditCloseButton.addEventListener("click", () =>
   closeModal(profileEditModal)
 );

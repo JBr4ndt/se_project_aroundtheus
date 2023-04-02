@@ -64,6 +64,7 @@ function fillProfileForm() {
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keyup", handleEscKey);
 }
 
 function openEditModal() {
@@ -73,6 +74,7 @@ function openEditModal() {
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keyup", handleEscKey);
 }
 
 function addCard(data) {
@@ -129,6 +131,40 @@ function handleAddCardFormSubmit(evt) {
   resetForm("add-card-form");
 }
 
+function handleEscKey(evt) {
+  const activeModal = document.querySelector(".modal_opened");
+  if (evt.key === "Escape") {
+    closeModal(activeModal);
+  }
+}
+
+function handleProfileFormOverlayClick(evt) {
+  if (
+    evt.target.classList.contains("modal") ||
+    evt.target.classList.contains("modal__close")
+  ) {
+    closeModal(profileEditModal);
+  }
+}
+
+function handleAddCardFormOverlayClick(evt) {
+  if (
+    evt.target.classList.contains("modal") ||
+    evt.target.classList.contains("modal__close")
+  ) {
+    closeModal(addCardModal);
+  }
+}
+
+function handleImageModalOverlayClick(evt) {
+  if (
+    evt.target.classList.contains("modal") ||
+    evt.target.classList.contains("modal__close")
+  ) {
+    closeModal(openImageModal);
+  }
+}
+
 initialCards.forEach((data) => {
   getCardElement(data);
   addCard(data);
@@ -139,11 +175,14 @@ profileEditButton.addEventListener("click", openEditModal);
 profileEditCloseButton.addEventListener("click", () =>
   closeModal(profileEditModal)
 );
+profileEditModal.addEventListener("mousedown", handleProfileFormOverlayClick);
 
 addCardForm.addEventListener("submit", handleAddCardFormSubmit);
 addCardButton.addEventListener("click", () => openModal(addCardModal));
 addCardCloseButton.addEventListener("click", () => closeModal(addCardModal));
+addCardModal.addEventListener("mousedown", handleAddCardFormOverlayClick);
 
 imageModalCloseButton.addEventListener("click", () =>
   closeModal(openImageModal)
 );
+openImageModal.addEventListener("mousedown", handleImageModalOverlayClick);

@@ -6,7 +6,7 @@ This project is made so all the elements are displayed correctly on popular scre
 
 Using relative units of measurement, writing separate CSS rules for common screen sizes, like desktop, tablet, and mobile, and deciding when to hide or show an element and make it visible, we were able to adjust the website to different screen sizes.
 
-This site lets you add photos and share them with the world, and with a profile section, you can let people know it was you who took them.
+Using Javascript, This site lets you add photos and share them with the world, and with a profile section, you can let people know it was you who took them.
 
 ## Project Features
 
@@ -15,6 +15,7 @@ This site lets you add photos and share them with the world, and with a profile 
 - Flexbox
 - Grid
 - Media Queries
+- Javascript
 
 ```css
 @media screen and (max-width: 770px) {

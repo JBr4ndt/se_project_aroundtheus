@@ -1,34 +1,8 @@
+import { openModal } from "./utils.js";
+
 const openImageModal = document.querySelector("#open-image-modal");
 const imageModal = openImageModal.querySelector(".modal__image");
 const imageModalName = openImageModal.querySelector(".modal__image-name");
-
-function handleEscKey(evt) {
-  if (evt.key === "Escape") {
-    const activeModal = document.querySelector(".modal_opened");
-    closeModal(activeModal);
-  }
-}
-
-function closeModalOnRemoteClick(evt) {
-  if (
-    evt.target.classList.contains("modal") ||
-    evt.target.classList.contains("modal__close")
-  ) {
-    closeModal(evt.target);
-  }
-}
-
-function openModal(modal) {
-  modal.classList.add("modal_opened");
-  document.addEventListener("keyup", handleEscKey);
-  modal.addEventListener("mousedown", closeModalOnRemoteClick);
-}
-
-function closeModal(modal) {
-  modal.classList.remove("modal_opened");
-  document.removeEventListener("keyup", handleEscKey);
-  modal.removeEventListener("mousedown", closeModalOnRemoteClick);
-}
 
 class Card {
   constructor(cardData, cardSelector) {

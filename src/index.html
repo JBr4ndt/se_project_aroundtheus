@@ -13,15 +13,13 @@
       name="keywords"
       content="practicum,practicum project,around us,explore us, pictures us"
     />
-    <link rel="stylesheet" href="./pages/index.css" />
     <link rel="icon" href="favicon.ico" />
   </head>
-
   <body class="page">
     <div class="page__content">
       <header class="header page__section">
         <img
-          src="./images/header_title.svg"
+          src="<%=require('./images/header_title.svg')%>"
           alt="Around The US Logo"
           class="header__logo"
         />
@@ -30,7 +28,7 @@
         <section class="profile page__section">
           <img
             class="profile__image"
-            src="./images/profile-picture.jpg"
+            src="<%=require('./images/profile-picture.jpg')%>"
             alt="Profile picture"
           />
           <div class="profile__info">
@@ -170,7 +168,5 @@
         </div>
       </li>
     </template>
-
-    <script src="./scripts/index.js" type="module"></script>
   </body>
 </html>

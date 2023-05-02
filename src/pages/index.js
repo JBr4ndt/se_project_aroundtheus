@@ -10,8 +10,8 @@ import {
   formConfiguration,
   cardSelector,
   profileEditModal,
-  profileTitle,
-  profileDescription,
+  profileName,
+  profileJob,
   profileForm,
   addCardModal,
   addCardForm,
@@ -21,14 +21,10 @@ import {
 
 const profileEditButton = document.querySelector(".profile__edit-button");
 const addCardButton = document.querySelector(".profile__add-button");
-const titleInput = profileEditModal.querySelector("#modal-input-title");
-const descriptionInput = profileEditModal.querySelector(
-  "#modal-input-description"
-);
 
 const userInfo = new UserInfo({
-  userNameSelector: profileTitle,
-  userJobSelector: profileDescription,
+  userNameSelector: profileName,
+  userJobSelector: profileJob,
 });
 
 const userInfoPopup = new PopupWithForm({
@@ -40,21 +36,27 @@ const userInfoPopup = new PopupWithForm({
 
 const imagePreviewPopup = new PopupWithImage(previewImageModal);
 
+function createCard(data) {
+  const cardElement = new Card(
+    {
+      cardData: data,
+      handleImageClick: () => {
+        imagePreviewPopup.open(data);
+      },
+    },
+    cardSelector
+  );
+
+  return cardElement.generateCard();
+}
+
 const cardList = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      const card = new Card(
-        {
-          cardData: item,
-          handleImageClick: () => {
-            imagePreviewPopup.open(item);
-          },
-        },
-        cardSelector
-      );
+      const card = createCard(item);
 
-      cardList.addItem(card.generateCard());
+      cardList.addItem(card);
     },
   },
   galleryCards
@@ -63,17 +65,9 @@ const cardList = new Section(
 const newCardPopup = new PopupWithForm({
   popupSelector: addCardModal,
   handleFormSubmit: (data) => {
-    const card = new Card(
-      {
-        cardData: data,
-        handleImageClick: () => {
-          imagePreviewPopup.open(data);
-        },
-      },
-      cardSelector
-    );
+    const card = createCard(data);
 
-    cardList.addItem(card.generateCard());
+    cardList.addItem(card);
   },
 });
 
@@ -90,13 +84,14 @@ editFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 
 profileEditButton.addEventListener("click", () => {
-  const currentUserInfo = userInfo.getUserInfo();
-  titleInput.value = currentUserInfo.userName;
-  descriptionInput.value = currentUserInfo.userJob;
+  const currentUserinfo = userInfo.getUserInfo();
+  userInfoPopup.setInputValues(currentUserinfo);
+
+  editFormValidator.resetValidation();
   userInfoPopup.open();
 });
 
 addCardButton.addEventListener("click", () => {
-  addCardFormValidator.toggleButtonState();
+  addCardFormValidator.resetValidation();
   newCardPopup.open();
 });

@@ -29,10 +29,7 @@ export default class Popup {
   };
 
   _closeModalOnRemoteClick = (evt) => {
-    if (
-      evt.target.classList.contains("modal") ||
-      evt.target.classList.contains("modal__close")
-    ) {
+    if (evt.target.classList.contains("modal")) {
       this.close();
     }
   };

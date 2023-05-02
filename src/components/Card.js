@@ -4,7 +4,7 @@ class Card {
     this._link = cardData.link;
     this._handleImageClick = handleImageClick;
 
-    this._cardSelector = cardSelector;
+    this._cardSelector = document.querySelector(cardSelector);
   }
 
   _getTemplate() {
@@ -26,9 +26,7 @@ class Card {
   }
 
   _handleLikeIcon = () => {
-    this._element
-      .querySelector(".card__like-button")
-      .classList.toggle("card__like-button_active");
+    this._likeButton.classList.toggle("card__like-button_active");
   };
 
   _handleDeleteCard = () => {

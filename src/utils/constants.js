@@ -33,18 +33,16 @@ export const formConfiguration = {
   errorClass: "modal__error_visible",
 };
 
-export const cardSelector = document.querySelector("#card-template");
+export const cardSelector = "#card-template";
 
 export const profileEditModal = document.querySelector("#profile-edit-modal");
 export const profileForm = document.querySelector("#profile-modal-form");
-export const profileTitle = document.querySelector(".profile__title");
-export const profileDescription = document.querySelector(
-  ".profile__description"
-);
+export const profileName = ".profile__title";
+export const profileJob = ".profile__description";
 
 export const addCardModal = document.querySelector("#add-card-modal");
 export const addCardForm = document.querySelector("#add-card-form");
 
 export const previewImageModal = document.querySelector("#preview-image-modal");
 
-export const galleryCards = document.querySelector(".gallery__cards");
+export const galleryCards = ".gallery__cards";

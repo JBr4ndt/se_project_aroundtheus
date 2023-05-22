@@ -1,10 +1,29 @@
 class Card {
-  constructor({ cardData, handleImageClick }, cardSelector) {
+  constructor(
+    {
+      cardData,
+      userId,
+      handleImageClick,
+      handleDeleteCardClick,
+      handleLikeClick,
+    },
+    cardSelector
+  ) {
     this._name = cardData.name;
     this._link = cardData.link;
+    this._id = cardData._id;
+    this._likes = cardData.likes;
+    this._userId = userId;
+    this._ownerId = cardData["owner"]._id;
     this._handleImageClick = handleImageClick;
+    this._handleDeleteCardClick = handleDeleteCardClick;
+    this._handleLikeClick = handleLikeClick;
 
     this._cardSelector = document.querySelector(cardSelector);
+  }
+
+  getId() {
+    return this._id;
   }
 
   _getTemplate() {
@@ -16,18 +35,37 @@ class Card {
   }
 
   _setEventListeners() {
-    this._likeButton.addEventListener("click", this._handleLikeIcon);
+    this._likeButton.addEventListener("click", () =>
+      this._handleLikeClick(this._id)
+    );
 
-    this._deleteButton.addEventListener("click", this._handleDeleteCard);
+    this._deleteButton.addEventListener("click", () =>
+      this._handleDeleteCardClick()
+    );
 
     this._cardImage.addEventListener("click", () =>
       this._handleImageClick({ name: this._name, link: this._link })
     );
   }
 
-  _handleLikeIcon = () => {
-    this._likeButton.classList.toggle("card__like-button_active");
-  };
+  isLiked() {
+    return this._likes.some((like) => like._id === this._userId);
+  }
+
+  _getLikeCounter() {
+    this._likesCounter.textContent = this._likes.length;
+    const isLiked = this.isLiked();
+    if (isLiked) {
+      this._likeButton.classList.add("card__like-button_active");
+    } else {
+      this._likeButton.classList.remove("card__like-button_active");
+    }
+  }
+
+  updateLikes(likes) {
+    this._likes = likes;
+    this._getLikeCounter();
+  }
 
   _handleDeleteCard = () => {
     this._element.remove();
@@ -39,8 +77,14 @@ class Card {
     this._likeButton = this._element.querySelector(".card__like-button");
     this._deleteButton = this._element.querySelector(".card__delete-button");
     this._cardImage = this._element.querySelector(".card__image");
+    this._likesCounter = this._element.querySelector(".card__like-counter");
 
     this._setEventListeners();
+    this._getLikeCounter();
+
+    if (this._ownerId != this._userId) {
+      this._deleteButton.remove();
+    }
 
     const cardName = this._element.querySelector(".card__name");
 

@@ -30,6 +30,10 @@
   box-sizing: border-box;
 }
 
+.modal__container_delete-modal {
+  width: 350px;
+}
+
 .modal__container_image {
   background: none;
   padding: 0;

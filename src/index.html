@@ -31,6 +31,7 @@
             src="<%=require('./images/profile-picture.jpg')%>"
             alt="Profile picture"
           />
+          <button class="profile__avatar-edit-button" type="button"></button>
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button
@@ -53,6 +54,37 @@
       <footer class="footer page__section">
         <p class="footer__copyright">© 2023 Around The U.S.</p>
       </footer>
+    </div>
+
+    <div class="modal" id="avatar-edit-modal">
+      <div class="modal__container">
+        <button
+          class="modal__close"
+          id="avatar-edit-close-button"
+          type="button"
+        ></button>
+        <h3 class="modal__heading">Change profile picture</h3>
+        <form
+          class="modal__form"
+          id="avatar-edit-form"
+          name="changeAvatarForm"
+          novalidate
+        >
+          <input
+            type="url"
+            class="modal__input"
+            id="modal-input-link"
+            name="avatar"
+            placeholder="Image url"
+            required
+          />
+          <span class="modal__error" id="modal-input-link-error"></span>
+
+          <button type="submit" class="modal__button" id="avatar-edit-button">
+            Save
+          </button>
+        </form>
+      </div>
     </div>
 
     <div class="modal" id="profile-edit-modal">
@@ -85,7 +117,7 @@
             type="text"
             class="modal__input"
             id="modal-input-description"
-            name="job"
+            name="about"
             placeholder="Description"
             minlength="2"
             maxlength="200"
@@ -93,7 +125,9 @@
           />
           <span class="modal__error" id="modal-input-description-error"></span>
 
-          <button type="submit" class="modal__button">Save</button>
+          <button type="submit" class="modal__button" id="profile-edit-button">
+            Save
+          </button>
         </form>
       </div>
     </div>
@@ -134,8 +168,28 @@
           />
           <span class="modal__error" id="modal-input-link-error"></span>
 
-          <button type="submit" class="modal__button">Create</button>
+          <button type="submit" class="modal__button" id="add-card-button">
+            Create
+          </button>
         </form>
+      </div>
+    </div>
+
+    <div class="modal" id="delete-card-modal">
+      <div class="modal__container modal__container_delete-modal">
+        <button
+          class="modal__close"
+          id="delete-card-close-button"
+          type="button"
+        ></button>
+        <h3 class="modal__heading">Are you sure?</h3>
+        <button
+          type="submit"
+          class="modal__button"
+          id="delete-card-modal-button"
+        >
+          Yes
+        </button>
       </div>
     </div>
 
@@ -160,11 +214,14 @@
         ></button>
         <div class="card__description">
           <h2 class="card__name"></h2>
-          <button
-            class="card__like-button"
-            type="button"
-            aria-label="Like"
-          ></button>
+          <div class="card__like-wrapper">
+            <button
+              class="card__like-button"
+              type="button"
+              aria-label="Like"
+            ></button>
+            <h3 class="card__like-counter"></h3>
+          </div>
         </div>
       </li>
     </template>

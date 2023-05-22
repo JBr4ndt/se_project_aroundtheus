@@ -13,6 +13,26 @@
   margin: 0 28px 0 0;
 }
 
+.profile__avatar-edit-button {
+  height: 120px;
+  width: 120px;
+  background-size: auto auto;
+  background: transparent url("../images/avatar-edit.svg") center no-repeat;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.2s linear;
+}
+
+.profile__avatar-edit-button:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
 .profile__info {
   display: grid;
   grid-template-areas:

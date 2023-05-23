@@ -21,9 +21,6 @@ export const addCardModal = document.querySelector("#add-card-modal");
 export const addCardForm = document.querySelector("#add-card-form");
 
 export const deleteCardModal = document.querySelector("#delete-card-modal");
-export const deleteCardModalButton = document.querySelector(
-  "#delete-card-modal-button"
-);
 
 export const previewImageModal = document.querySelector("#preview-image-modal");
 

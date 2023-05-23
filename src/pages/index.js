@@ -42,19 +42,11 @@ let currentUserId = "f822aad15aed6394efab1999";
 let cardList;
 
 api
-  .getUserInfo()
-  .then((userData) => {
+  .getApiInfo()
+  .then(([userData, initialCards]) => {
     userInfo.setUserInfo({ name: userData.name, about: userData.about });
     userInfo.setAvatar(userData.avatar);
     currentUserId = userData._id;
-  })
-  .catch((err) => {
-    console.error(err);
-  });
-
-api
-  .getInitialCards()
-  .then((initialCards) => {
     cardList = new Section(
       {
         items: initialCards,

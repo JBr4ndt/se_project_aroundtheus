@@ -24,7 +24,7 @@ export default class Api {
   }
 
   getApiInfo() {
-    return Promise.all([this.getUserInfo, this.getInitialCards]);
+    return Promise.all([this.getUserInfo(), this.getInitialCards()]);
   }
 
   setProfile({ name, about }) {
